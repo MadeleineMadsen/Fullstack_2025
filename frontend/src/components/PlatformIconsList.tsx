@@ -13,32 +13,32 @@ interface Props {
 
 const PlatformIconsList = ({ platforms }: Props) => {
     const getIcon = (slug: string): IconType | undefined => {
-    switch (slug) {
-        case "pc":
-        return FaWindows;
-        case "playstation":
-        return FaPlaystation;
-        case "xbox":
-        return FaXbox;
-        case "nintendo":
-        return SiNintendo;
-        case "android":
-        return FaAndroid;
-        case "ios":
-        return MdPhoneIphone;
-        default:
-        return undefined;
-    }
+        switch (slug) {
+            case "pc":
+                return FaWindows;
+            case "playstation":
+                return FaPlaystation;
+            case "xbox":
+                return FaXbox;
+            case "nintendo":
+                return SiNintendo;
+            case "android":
+                return FaAndroid;
+            case "ios":
+                return MdPhoneIphone;
+            default:
+                return undefined;
+        }
     };
 
     return (
-    <HStack margin={1}>
-        {platforms.map((platform) => {
-        const IconComponent = getIcon(platform.slug);
-        if (!IconComponent) return null;
-        return <Icon key={platform.id} as={IconComponent} />;
-        })}
-    </HStack>
+        <HStack margin={1}>
+            {platforms.map((platform) => {
+                const IconComponent = getIcon(platform.slug);
+                if (!IconComponent) return null;
+                return <Icon key={platform.id} as={IconComponent} />;
+            })}
+        </HStack>
     );
 };
 

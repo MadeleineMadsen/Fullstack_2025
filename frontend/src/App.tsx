@@ -9,12 +9,12 @@ function App() {
       templateAreas=
       {{ base: `"nav" "main"`, lg: `"nav nav" "aside main"` }}
 
-      // gridTemplateRows={'50px 1fr 30px'}
-      // gridTemplateColumns={'150px 1fr'}
-      // h='200px'
-      // gap='1'
-      // color='blackAlpha.700'
-      // fontWeight='bold'
+    // gridTemplateRows={'50px 1fr 30px'}
+    // gridTemplateColumns={'150px 1fr'}
+    // h='200px'
+    // gap='1'
+    // color='blackAlpha.700'
+    // fontWeight='bold'
     >
       <GridItem pl="2" area={"nav"}>
         <NavBar />

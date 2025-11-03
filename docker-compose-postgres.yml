@@ -1,15 +1,15 @@
 # run without the seeder
 # docker-compose up --scale seeder=0
 services:
-  rawg-backend:
-    container_name: rawg-backend
+  backend:
+    container_name: backend
     build:
-      context: ./rawg-backend
+      context: ./backend
       dockerfile: Dockerfile
     volumes:
-      - ./rawg-backend:/app
+      - ./backend:/app
     ports:
-      - "5000:5000"
+      - "5001:5000"
     environment:
       DATABASE_URL: postgres://root:rootpassword@postgres:5432/rawgDatabase
       DB_TYPE: postgres
@@ -17,18 +17,18 @@ services:
     depends_on:
       - postgres
 
-  rawg-frontend:
-    container_name: rawg-frontend
+  frontend:
+    container_name: frontend
     build:
-      context: ./rawg-frontend
+      context: ./frontend
       dockerfile: Dockerfile
     volumes:
-      - ./rawg-frontend:/app
+      - ./frontend:/app
       - /app/node_modules # Prevents overwriting node_modules on the container
     ports:
       - "3000:3000"
     environment:
-      VITE_API_URL: http://localhost:5000
+      VITE_API_URL: http://localhost:5001
       CHOKIDAR_USEPOLLING: true # For file watching in Docker on some systems
 
   seeder:

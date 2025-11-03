@@ -1,33 +1,34 @@
 # run without the seeder
 # docker-compose up --scale seeder=0
 services:
-  backend:
-    container_name: backend
+  rawg-backend:
+    container_name: rawg-backend
     build:
-      context: ./backend
+      context: ./rawg-backend
       dockerfile: Dockerfile
     volumes:
-      - ./backend:/app
+      - ./rawg-backend:/app
     ports:
-      - "5001:5000"
+      - "5000:5000"
     environment:
       DATABASE_URL: mysql://root:rootpassword@mysql:3306/rawgDatabase
       DB_TYPE: mysql
+      SERVER_URL: http://localhost:5000
     depends_on:
       - mysql
 
-  frontend:
-    container_name: frontend
+  rawg-frontend:
+    container_name: rawg-frontend
     build:
-      context: ./frontend
+      context: ./rawg-frontend
       dockerfile: Dockerfile
     volumes:
-      - ./frontend:/app
+      - ./rawg-frontend:/app
       - /app/node_modules # Prevents overwriting node_modules on the container
     ports:
       - "3000:3000"
     environment:
-      VITE_API_URL: http://localhost:5001
+      VITE_API_URL: http://localhost:5000
       CHOKIDAR_USEPOLLING: true # For file watching in Docker on some systems
 
   mysql:

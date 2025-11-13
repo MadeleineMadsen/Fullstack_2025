@@ -22,10 +22,8 @@ class ApiClient<T> {
       .get<Response<T>>(this.endpoint, config)
       .then((res) => res.data);
 
-  getById = (id: number) =>
-    axiosInstance
-      .get<Response<T>>(`${this.endpoint}/${id}`)
-      .then((res) => res.data);
+  get = (id: number | string) =>
+    axiosInstance.get<T>(`${this.endpoint}/${id}`).then((res) => res.data);
 
   delete = (id: number) =>
     axiosInstance.delete(`${this.endpoint}/${id}`).then((res) => res.data);
